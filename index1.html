@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Daftar Akun | Bellissima Fashion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#745c00",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-tint": "#5f5e5e",
+                        "on-secondary-fixed": "#241a00",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-fixed-variant": "#474746",
+                        "primary": "#000000",
+                        "on-tertiary-container": "#848570",
+                        "on-tertiary-fixed-variant": "#474836",
+                        "on-primary-fixed": "#1c1b1b",
+                        "inverse-surface": "#2f3131",
+                        "tertiary": "#000000",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c4c7c7",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-dim": "#dadada",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#fed65b",
+                        "surface-container-low": "#f3f3f4",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9f9",
+                        "secondary": "#735c00",
+                        "on-secondary-fixed-variant": "#574500",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#1c1b1b",
+                        "outline": "#747878",
+                        "inverse-primary": "#c8c6c5",
+                        "tertiary-container": "#1b1d0e",
+                        "on-tertiary-fixed": "#1b1d0e",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "surface-container": "#eeeeee",
+                        "on-surface": "#1a1c1c",
+                        "primary-fixed": "#e5e2e1",
+                        "secondary-fixed-dim": "#e9c349",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e4e4cc",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-primary-container": "#858383",
+                        "on-background": "#1a1c1c",
+                        "background": "#f9f9f9",
+                        "on-surface-variant": "#444748",
+                        "tertiary-fixed-dim": "#c8c8b0",
+                        "secondary-fixed": "#ffe088"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "button": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Playfair Display"],
+                        "display": ["Playfair Display"],
+                        "label-caps": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                        "display": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .form-input-focus:focus {
+            outline: none;
+            border-color: #D4AF37; /* Soft Gold from style guidance */
+        }
+        .luxury-shadow {
+            box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.08);
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Hero/Split Layout for Registration -->
+<main class="flex-grow flex items-center justify-center lg:py-24 py-12 px-margin-mobile md:px-margin-desktop">
+<div class="w-full max-w-container-max grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left Side: Editorial Image/Mood -->
+<div class="hidden lg:block lg:col-span-6 relative h-[800px] rounded-xl overflow-hidden fade-in">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105" data-alt="A high-fashion editorial portrait of a model in a minimalist cream-colored studio. The lighting is soft and cinematic, highlighting the elegant drape of a sustainable silk garment. The aesthetic is quiet luxury, featuring a palette of beige, ivory, and soft gold accents. The atmosphere is serene, sophisticated, and high-end, representing the Bellissima Fashion brand identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJlEJRITGeyUz8jQIALDTWv6QXdrcvdzOlBCZGl58AZnHahen2fYZLt1jlP68gWodqnLMVdLsVaMbaB2XHR70ejMwWY5Sh-ejgpU8Y4a8Ae2jOAo26eLlWEo_xMBzfCE-SazifOxuFhi7c2EdwCfZNL-em0x6Y_fI0ugFpyQw0sZvr9UjA2aJzWPecCC8tIph_jV6943z7el3irYFNbgbily8lAfRH8KBT2jULW_iJly-rUQZfV0ykkEBJlTU8154Fi7CUBrodJsg')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<div class="absolute bottom-12 left-12 right-12 text-on-primary">
+<h2 class="font-headline-lg text-headline-lg mb-4 tracking-tight">Koleksi Abadi</h2>
+<p class="font-body-lg text-body-lg max-w-md opacity-90">Bergabunglah dengan komunitas eksklusif Bellissima dan temukan keanggunan yang dirancang khusus untuk Anda.</p>
+</div>
+</div>
+<!-- Right Side: Registration Form -->
+<div class="lg:col-span-5 lg:col-start-8 flex flex-col items-center lg:items-start fade-in" style="animation-delay: 0.2s;">
+<div class="w-full max-w-md">
+<header class="mb-12 text-center lg:text-left">
+<h1 class="font-headline-md text-headline-md mb-2 text-primary tracking-tight">Daftar Akun</h1>
+<p class="font-body-md text-on-surface-variant">Lengkapi data diri Anda untuk memulai perjalanan mode.</p>
+</header>
+<!-- Success Message (Initially Hidden) -->
+<div class="hidden mb-8 p-4 bg-surface-container-low border border-secondary/30 rounded-lg flex items-center gap-3 transition-all" id="success-alert">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<p class="font-label-caps text-label-caps text-secondary uppercase">Berhasil</p>
+<p class="font-body-md text-body-md text-on-surface">Pendaftaran berhasil! Silakan periksa email Anda.</p>
+</div>
+</div>
+<form class="space-y-6" id="registration-form">
+<!-- Nama Lengkap -->
+<div class="relative">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant block mb-1" for="full_name">Nama Lengkap</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-on-surface placeholder:text-outline focus:ring-0 focus:border-secondary transition-colors" id="full_name" name="full_name" placeholder="Masukkan nama lengkap Anda" required="" type="text"/>
+</div>
+<!-- Email -->
+<div class="relative">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant block mb-1" for="email">Email</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-on-surface placeholder:text-outline focus:ring-0 focus:border-secondary transition-colors" id="email" name="email" placeholder="email@contoh.com" required="" type="email"/>
+</div>
+<!-- Password -->
+<div class="relative">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant block mb-1" for="password">Password</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-on-surface placeholder:text-outline focus:ring-0 focus:border-secondary transition-colors" id="password" name="password" placeholder="Min. 8 karakter" required="" type="password"/>
+</div>
+<!-- Konfirmasi Password -->
+<div class="relative">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant block mb-1" for="confirm_password">Konfirmasi Password</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-on-surface placeholder:text-outline focus:ring-0 focus:border-secondary transition-colors" id="confirm_password" name="confirm_password" placeholder="Ulangi password Anda" required="" type="password"/>
+</div>
+<div class="flex items-start gap-3 py-2">
+<input class="mt-1 rounded border-outline text-primary focus:ring-primary h-4 w-4" id="terms" required="" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface-variant" for="terms">
+                                Saya setuju dengan <a class="text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-secondary transition-all" href="#">Syarat & Ketentuan</a> serta <a class="text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-secondary transition-all" href="#">Kebijakan Privasi</a>.
+                            </label>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary text-on-primary font-button text-button py-4 rounded-xl transition-all duration-300 hover:bg-on-surface active:scale-[0.98] relative overflow-hidden group" id="submit-btn" type="submit">
+<span class="relative z-10">Daftar</span>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-secondary-fixed transition-all duration-300 group-hover:w-1/2"></div>
+</button>
+</form>
+<footer class="mt-8 text-center lg:text-left">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Sudah memiliki akun? 
+                            <a class="text-primary font-semibold hover:text-secondary transition-colors" href="#">Masuk Sekarang</a>
+</p>
+</footer>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Bottom Section for Continuity -->
+<div class="bg-surface-container-low py-12 px-margin-desktop text-center border-t border-outline-variant/10">
+<p class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.2em] uppercase mb-4">Crafting Elegance Since 2024</p>
+<div class="flex justify-center gap-8">
+<span class="material-symbols-outlined text-outline-variant">eco</span>
+<span class="material-symbols-outlined text-outline-variant">workspace_premium</span>
+<span class="material-symbols-outlined text-outline-variant">public</span>
+</div>
+</div>
+<script>
+        // Micro-interactions and Form Handling
+        const form = document.getElementById('registration-form');
+        const successAlert = document.getElementById('success-alert');
+        const submitBtn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="animate-spin h-4 w-4 border-2 border-on-primary border-t-transparent rounded-full"></span> Menyiapkan Akun...</span>';
+
+            // Simulate API Call
+            setTimeout(() => {
+                form.classList.add('opacity-50', 'pointer-events-none');
+                successAlert.classList.remove('hidden');
+                successAlert.classList.add('fade-in');
+                
+                submitBtn.innerHTML = 'Daftar';
+                submitBtn.disabled = false;
+                
+                // Clear form
+                form.reset();
+
+                // Optional: Scroll to success message
+                successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1500);
+        });
+
+        // Sticky input label focus effect (visual polish)
+        const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.previousElementSibling.classList.replace('text-on-surface-variant', 'text-secondary');
+            });
+            input.addEventListener('blur', () => {
+                input.previousElementSibling.classList.replace('text-secondary', 'text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

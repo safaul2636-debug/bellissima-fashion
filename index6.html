@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bellissima | Product Catalog</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,500;0,600;1,500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#745c00",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "surface-tint": "#5f5e5e",
+                    "on-secondary-fixed": "#241a00",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e2e2e2",
+                    "on-primary-fixed-variant": "#474746",
+                    "primary": "#000000",
+                    "on-tertiary-container": "#848570",
+                    "on-tertiary-fixed-variant": "#474836",
+                    "on-primary-fixed": "#1c1b1b",
+                    "inverse-surface": "#2f3131",
+                    "tertiary": "#000000",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#c4c7c7",
+                    "inverse-on-surface": "#f0f1f1",
+                    "surface-dim": "#dadada",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e8e8e8",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#fed65b",
+                    "surface-container-low": "#f3f3f4",
+                    "on-primary": "#ffffff",
+                    "surface": "#f9f9f9",
+                    "secondary": "#735c00",
+                    "on-secondary-fixed-variant": "#574500",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#1c1b1b",
+                    "outline": "#747878",
+                    "inverse-primary": "#c8c6c5",
+                    "tertiary-container": "#1b1d0e",
+                    "on-tertiary-fixed": "#1b1d0e",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "surface-container": "#eeeeee",
+                    "on-surface": "#1a1c1c",
+                    "primary-fixed": "#e5e2e1",
+                    "secondary-fixed-dim": "#e9c349",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#e4e4cc",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-primary-container": "#858383",
+                    "on-background": "#1a1c1c",
+                    "background": "#f9f9f9",
+                    "on-surface-variant": "#444748",
+                    "tertiary-fixed-dim": "#c8c8b0",
+                    "secondary-fixed": "#ffe088"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "button": ["Inter"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Playfair Display"],
+                    "display": ["Playfair Display"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "display": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .product-card:hover .cart-btn {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .cart-btn {
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .active-filter {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-container-highest/80 backdrop-blur-md border-b border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<a class="font-headline-md text-headline-md text-primary dark:text-on-primary-fixed tracking-tight" href="#">Bellissima</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-caps text-label-caps text-primary border-b-2 border-secondary pb-1 cursor-pointer active:opacity-70 transition-all duration-300" href="#">Collections</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary cursor-pointer active:opacity-70 transition-all duration-300" href="#">New Arrivals</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary cursor-pointer active:opacity-70 transition-all duration-300" href="#">Artisans</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary cursor-pointer active:opacity-70 transition-all duration-300" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<!-- Real-time Search Input -->
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant scale-90">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-body-md focus:ring-1 focus:ring-secondary-fixed-dim w-64 transition-all duration-300" placeholder="Search curated pieces..." type="text"/>
+</div>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-primary cursor-pointer hover:text-secondary-fixed-dim transition-all">person</button>
+<div class="relative">
+<button class="material-symbols-outlined text-primary cursor-pointer hover:text-secondary-fixed-dim transition-all">shopping_bag</button>
+<span class="absolute -top-1 -right-1 bg-secondary text-on-secondary text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">2</span>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-24 px-margin-desktop max-w-container-max mx-auto">
+<!-- Header Section -->
+<header class="mb-16">
+<h1 class="font-headline-lg text-headline-lg mb-4">Our Catalog</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Discover timeless elegance through our meticulously handcrafted collections, where modern aesthetics meet traditional artisan craftsmanship.</p>
+</header>
+<!-- Catalog Controls -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
+<!-- Category Tabs -->
+<div class="flex flex-wrap gap-2">
+<button class="px-6 py-2 rounded-full border border-outline-variant font-label-caps text-label-caps hover:border-primary transition-all active-filter">All Pieces</button>
+<button class="px-6 py-2 rounded-full border border-outline-variant font-label-caps text-label-caps hover:border-primary transition-all">Evening Wear</button>
+<button class="px-6 py-2 rounded-full border border-outline-variant font-label-caps text-label-caps hover:border-primary transition-all">Minimalist Essentials</button>
+<button class="px-6 py-2 rounded-full border border-outline-variant font-label-caps text-label-caps hover:border-primary transition-all">Accessories</button>
+<button class="px-6 py-2 rounded-full border border-outline-variant font-label-caps text-label-caps hover:border-primary transition-all">Footwear</button>
+</div>
+<!-- Sorting & Filtering -->
+<div class="flex items-center gap-4 w-full md:w-auto">
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container border border-outline-variant rounded-lg font-button text-button group-hover:border-primary transition-all">
+<span>Sort By: Newest</span>
+<span class="material-symbols-outlined scale-75">expand_more</span>
+</button>
+<!-- Dropdown hidden by default in real UI -->
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container border border-outline-variant rounded-lg font-button text-button hover:border-primary transition-all">
+<span class="material-symbols-outlined scale-75">filter_list</span>
+<span>Filters</span>
+</button>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+<!-- Product Card 1 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-fashion minimalist studio portrait of a model wearing a structured ivory silk dress. The background is a clean, neutral beige, illuminated by soft, diffused side-lighting that emphasizes the garment's texture and silhouette. The mood is sophisticated and editorial, consistent with a high-end luxury fashion catalog aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6I3pktRFvDp8sWCGqk49HBlIR3g_e1AGoL8w0hWvhECnJyi4q9uu6ww9dE7107tifCAGLUtRH2C8R3SybZ3IUQS0RNy_PHPUDIBvII6DjubBRu4MayQiBPmb1EiHN9YIkahQgwjUl3t_PsHQexAJY9VJ-zAcDSXsQVPoFin2e5UJ28boW7wiBr2g77s2ggicdIx-HiQp2bBJ9fqNYkaEaRViCG7e761IfRdrN2P7RZC9Y9wujX4Pejj6MQRwu4ry_zHVvYYIL3RY"/>
+<div class="absolute top-4 left-4 bg-secondary-container/90 px-3 py-1 rounded-full">
+<span class="font-label-caps text-label-caps text-on-secondary-container">New Arrival</span>
+</div>
+<button class="cart-btn absolute bottom-4 left-4 right-4 bg-primary text-on-primary py-3 rounded-lg flex items-center justify-center gap-2 font-button shadow-lg">
+<span class="material-symbols-outlined scale-90">shopping_cart</span>
+<span>Tambah ke Keranjang</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest mb-1">Evening Wear</p>
+<h3 class="font-headline-sm text-headline-sm mb-1 group-hover:text-secondary-fixed-dim transition-colors">Aria Silk Gown</h3>
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">4.9 (124)</span>
+</div>
+</div>
+<p class="font-body-lg text-body-lg font-bold">$1,240</p>
+</div>
+<button class="mt-2 text-secondary font-button text-button hover:underline transition-all">View Details</button>
+</div>
+<!-- Product Card 2 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close-up shot of a luxurious black leather handbag with gold hardware. The bag is placed on a marble plinth in a dimly lit, high-contrast studio setting. Soft gold accents and sharp highlights create a feeling of premium quality and craftsmanship. Modern, clean photography style for a high-fashion accessory line." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd8OzdmgqeO3UgHXZ9pe6Y-UpMUWW702gQVilRcS2o9B21f0wqNYv-O6pjLquq5wadWRpZSG7UxZFs1vlLJ43XyHBQXgi6kQFFmxxBUnTsZ4VgiIK2wK-DpIST3CrnMs6Y4AO8tBV-3DR_DuEtzgkte_YsZfKj_7ieAAV3MOP4d9a6F2EXig16MdmNsOSPy3GLsid17dpZm9P-gx8E130fG5zj5Zg5ncs2SIeDsmz5HKfht59MadKbjnwfyj2TmVUSRuOZfPjEHcI"/>
+<button class="cart-btn absolute bottom-4 left-4 right-4 bg-primary text-on-primary py-3 rounded-lg flex items-center justify-center gap-2 font-button shadow-lg">
+<span class="material-symbols-outlined scale-90">shopping_cart</span>
+<span>Tambah ke Keranjang</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest mb-1">Accessories</p>
+<h3 class="font-headline-sm text-headline-sm mb-1 group-hover:text-secondary-fixed-dim transition-colors">Midnight Tote</h3>
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">4.8 (82)</span>
+</div>
+</div>
+<p class="font-body-lg text-body-lg font-bold">$850</p>
+</div>
+<button class="mt-2 text-secondary font-button text-button hover:underline transition-all">View Details</button>
+</div>
+<!-- Product Card 3 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A male model wearing a tailored charcoal grey wool overcoat and a black cashmere turtleneck. He stands against a brutalist concrete wall under soft, overcast daylight. The color palette is muted and sophisticated, focusing on textures and sharp tailoring. The overall vibe is modern luxury and quiet elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKx4rstwc_P5Q3ZXiYQ163B7H13gq2-mtUOEZHw4BFsHFdwHGR1jzFqFwLI_gcbt0Q1p8T21CGQmZiaDJnzsrgDW_Xzr7nMrQxcRt79Rmkg5wT7BpbyslYCzOq1HQF-gbjCtE24xEqhdKF1A2lN5241RNRnp0238ImxaElFTjnSXwYqyFf9tB3LRG32lVSAh2BRmjrCYTo-gqz-5zy3uc2G-HDtabWbL24bEu5yNiwVCDD6B-NbQcY6ehS7GxShjhtlBNEAqynguk"/>
+<button class="cart-btn absolute bottom-4 left-4 right-4 bg-primary text-on-primary py-3 rounded-lg flex items-center justify-center gap-2 font-button shadow-lg">
+<span class="material-symbols-outlined scale-90">shopping_cart</span>
+<span>Tambah ke Keranjang</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest mb-1">Essentials</p>
+<h3 class="font-headline-sm text-headline-sm mb-1 group-hover:text-secondary-fixed-dim transition-colors">City Overcoat</h3>
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">4.7 (56)</span>
+</div>
+</div>
+<p class="font-body-lg text-body-lg font-bold">$1,500</p>
+</div>
+<button class="mt-2 text-secondary font-button text-button hover:underline transition-all">View Details</button>
+</div>
+<!-- Product Card 4 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Elegant pointed-toe leather heels in a soft blush pink color, presented on a reflective glass surface. The background is a gradient of warm white and soft gold. Soft-focus lighting creates a dreamy, high-end editorial atmosphere. Every stitch and detail of the leather is visible, showcasing artisan quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi_GSBo-_v60QcOIqngPKi24uInzvr4K4c3XVI5CSXlTKWf4wcB-YDs7fPlK0Hcnw6MuLc0-kahTRHlDLFm6Ef9vFzJGLwDtsXSQ_XFt76XG7ClJGTc_r14EsR5eIDzDoYj3frwZgGWdM1oFJGJ9z-9HgSGCY4c8EZ7eTLp3JS20qU81WXwjP3Rq3FP199MBjtdkL3QZGtoyoah2hKq7n08T7C8bkRYgliEgm-3hhKEgKg3wENW9V_WcPppcqCedUKfx9ezI2iqmY"/>
+<div class="absolute top-4 left-4 bg-primary/10 backdrop-blur-sm px-3 py-1 rounded-full">
+<span class="font-label-caps text-label-caps text-primary">Limited Edition</span>
+</div>
+<button class="cart-btn absolute bottom-4 left-4 right-4 bg-primary text-on-primary py-3 rounded-lg flex items-center justify-center gap-2 font-button shadow-lg">
+<span class="material-symbols-outlined scale-90">shopping_cart</span>
+<span>Tambah ke Keranjang</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest mb-1">Footwear</p>
+<h3 class="font-headline-sm text-headline-sm mb-1 group-hover:text-secondary-fixed-dim transition-colors">Seraphina Heels</h3>
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">5.0 (12)</span>
+</div>
+</div>
+<p class="font-body-lg text-body-lg font-bold">$920</p>
+</div>
+<button class="mt-2 text-secondary font-button text-button hover:underline transition-all">View Details</button>
+</div>
+<!-- Additional Cards to fill grid -->
+<!-- Product Card 5 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A detailed shot of a pure white linen shirt hanging on a minimalist wooden rail. The lighting is bright and airy, typical of a summer morning. The fabric has a visible, high-quality weave. The aesthetic is clean, sustainable, and minimalist, with a palette of whites and natural wood tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzvuz9MVxmt98ku7UEgRsLehVYOCdZ1ul0xJ3TzaKK52-E7Sl3ZuwjiDekNLiqlR48lY6gf4bEbBtyfsGuq2yS7OpLtaMNRSscPWOhy0i7b0BCV5Y6mTMu14KilEtHXMdtRlBcoHHo05jPakN8tQZ4E52bSnr3gpcClcdPxwhYZf5FsNkh-_8BBrpZ8MSxQVLm9o8INyxwJ9RxwmpQFzRdMpPlZxOjTfoskQs0Sjh8GsgxVj7wdOQLgKeFyRIPN2fDyv_vpZTGEL8"/>
+<button class="cart-btn absolute bottom-4 left-4 right-4 bg-primary text-on-primary py-3 rounded-lg flex items-center justify-center gap-2 font-button shadow-lg">
+<span class="material-symbols-outlined scale-90">shopping_cart</span>
+<span>Tambah ke Keranjang</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest mb-1">Minimalist Essentials</p>
+<h3 class="font-headline-sm text-headline-sm mb-1 group-hover:text-secondary-fixed-dim transition-colors">Pure Linen Shirt</h3>
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">4.6 (210)</span>
+</div>
+</div>
+<p class="font-body-lg text-body-lg font-bold">$210</p>
+</div>
+<button class="mt-2 text-secondary font-button text-button hover:underline transition-all">View Details</button>
+</div>
+<!-- Product Card 6 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Macro photography of a delicate gold chain necklace with a small geometric pendant. The jewelry is resting on a piece of raw sandstone. Dramatic lighting creates deep shadows and highlights the brilliance of the 24k gold. The style is earthy yet incredibly luxurious and high-fashion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWQTjXO950mrIpvBaBwA3fkR4wDO9X1fJxANZEYrqsDIw3D7Q4uI29AEq3MH2wLRTRe2MaRmN2qrgYx6dLr72K_RXxXqajHqRG7KYqi6-s7Hkef5DZikR5Nzr6TLkt3t6A_s9Fk0sRXCp4Ssd_8eApcwABjrjP_KwV2Mv69T09lipLGz2CvDX9r6mgSmUVSDrfLHUnz-p8MsjePvgc0YXmUwCrFLfYkzZ1222f_K6-W_sSCoG8sm_bS1ibGhThzO8PBZeozfVOkSI"/>
+<button class="cart-btn absolute bottom-4 left-4 right-4 bg-primary text-on-primary py-3 rounded-lg flex items-center justify-center gap-2 font-button shadow-lg">
+<span class="material-symbols-outlined scale-90">shopping_cart</span>
+<span>Tambah ke Keranjang</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest mb-1">Accessories</p>
+<h3 class="font-headline-sm text-headline-sm mb-1 group-hover:text-secondary-fixed-dim transition-colors">Geometric Charm</h3>
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">4.9 (45)</span>
+</div>
+</div>
+<p class="font-body-lg text-body-lg font-bold">$380</p>
+</div>
+<button class="mt-2 text-secondary font-button text-button hover:underline transition-all">View Details</button>
+</div>
+<!-- Product Card 7 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A studio shot of a tailored navy blazer draped over a vintage velvet chair. The lighting is moody and warm, creating a feeling of old-world charm mixed with modern precision. The textures of the navy wool and the velvet contrast beautifully. High-end menswear catalog photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaauuD3ZaIlHiynCziDF7OvrARcg4vXSozXBlkMBgjdiLpGOpp8uu3udRygs8mNLYLOvExukbhwtIBBAU43GOGR9r872Wwr6LsvM6C6Io97u3R-DLWpTSKsHkSCk1AUJDpnqv-gJlnzXZrpDud4kI8VmcHM39E54VChGFkocX_ml7SesX00YnUapxymVWdH1a12UlqUzz9c1OkUEYi8kqZ-7HAGNqhxBYwamplEmsljBXKsbfQEASuO037noFj-fdAFtlfzAAbhDg"/>
+<button class="cart-btn absolute bottom-4 left-4 right-4 bg-primary text-on-primary py-3 rounded-lg flex items-center justify-center gap-2 font-button shadow-lg">
+<span class="material-symbols-outlined scale-90">shopping_cart</span>
+<span>Tambah ke Keranjang</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest mb-1">Artisans</p>
+<h3 class="font-headline-sm text-headline-sm mb-1 group-hover:text-secondary-fixed-dim transition-colors">Regent Blazer</h3>
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">4.8 (31)</span>
+</div>
+</div>
+<p class="font-body-lg text-body-lg font-bold">$1,100</p>
+</div>
+<button class="mt-2 text-secondary font-button text-button hover:underline transition-all">View Details</button>
+</div>
+<!-- Product Card 8 -->
+<div class="product-card group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist photograph of hand-sewn leather loafers in a rich mahogany color. The shoes are placed on a clean white background with long, soft shadows. The focus is on the intricate stitching and the grain of the premium leather. The aesthetic is extremely clean, sophisticated, and gallery-like." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUtNBH-riumEevD7VZ_D8o5JRT0qLW4AQgJd7GsE1r2WF6jL9_BBaPPp8gbUghc8PHI2PcwLPU2T4F9O1uVqZUjgGCRbexyaJE2VYerGuPZzeuINvPvQW809wJhlc1vHlAOPxesMO-Rn9x0A1p-Ho3mW_ZYLwX4pgGDB32U_Y9jDVYUuUmF4om2XzcacWlManEVn_hDhAmAKSP2TVJQ2IYm7D5vNrUQ7loP-f5liIfddRWP-ZL-L-bUfXhdrGrFhML0y5RZASgrCQ"/>
+<button class="cart-btn absolute bottom-4 left-4 right-4 bg-primary text-on-primary py-3 rounded-lg flex items-center justify-center gap-2 font-button shadow-lg">
+<span class="material-symbols-outlined scale-90">shopping_cart</span>
+<span>Tambah ke Keranjang</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest mb-1">Footwear</p>
+<h3 class="font-headline-sm text-headline-sm mb-1 group-hover:text-secondary-fixed-dim transition-colors">Classic Loafer</h3>
+<div class="flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">4.9 (88)</span>
+</div>
+</div>
+<p class="font-body-lg text-body-lg font-bold">$450</p>
+</div>
+<button class="mt-2 text-secondary font-button text-button hover:underline transition-all">View Details</button>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-24 flex items-center justify-center gap-4">
+<button class="w-12 h-12 flex items-center justify-center rounded-full border border-outline-variant hover:border-primary transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span class="font-label-caps text-label-caps">Page 1 of 12</span>
+<button class="w-12 h-12 flex items-center justify-center rounded-full border border-outline-variant hover:border-primary transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-24 mt-24 bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-6">Bellissima</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Handcrafting the future of heritage. Our pieces are designed to be lived in and passed down.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">language</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">share</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps mb-6 uppercase tracking-widest text-primary">Explore</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline decoration-secondary transition-all" href="#">Collections</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline decoration-secondary transition-all" href="#">Our Story</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline decoration-secondary transition-all" href="#">Artisans</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline decoration-secondary transition-all" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps mb-6 uppercase tracking-widest text-primary">Customer Service</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline decoration-secondary transition-all" href="#">Shipping &amp; Returns</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline decoration-secondary transition-all" href="#">Size Guide</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline decoration-secondary transition-all" href="#">Contact Us</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:underline decoration-secondary transition-all" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps mb-6 uppercase tracking-widest text-primary">Newsletter</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Join our inner circle for early access and editorial insights.</p>
+<div class="relative">
+<input class="w-full bg-transparent border-b border-outline focus:border-primary focus:ring-0 px-0 py-2 font-body-md" placeholder="Your email address" type="email"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 font-label-caps text-label-caps text-primary hover:text-secondary transition-all">JOIN</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-20 pt-8 border-t border-outline-variant/10">
+<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">© 2024 Bellissima Fashion. Handcrafted Elegance.</p>
+</div>
+</footer>
+<script>
+        // Simple filter button interaction
+        const filterBtns = document.querySelectorAll('.px-6.py-2.rounded-full');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active-filter'));
+                btn.classList.add('active-filter');
+            });
+        });
+
+        // Add to cart micro-interaction
+        const cartBtns = document.querySelectorAll('.cart-btn');
+        cartBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const originalContent = btn.innerHTML;
+                btn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span><span>Menambahkan...</span>';
+                btn.classList.add('bg-secondary');
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<span class="material-symbols-outlined">check</span><span>Berhasil Ditambah!</span>';
+                    btn.classList.remove('bg-secondary');
+                    btn.classList.add('bg-green-600');
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalContent;
+                        btn.classList.remove('bg-green-600');
+                    }, 2000);
+                }, 1200);
+            });
+        });
+
+        // Real-time search effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(query)) {
+                    card.style.display = 'block';
+                    card.style.opacity = '1';
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => {
+                        if(card.style.opacity === '0') card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    </script>
+</body></html>
